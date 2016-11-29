@@ -22,6 +22,7 @@ public class QLearning {
 	}
 	private static boolean isYellow() {
 		int red = colorSensor.getColor().getRed();
+
 		int green = colorSensor.getColor().getGreen();
 		int blue = colorSensor.getColor().getBlue();
 		return (red >= 255)&&(green >= 210)&&(blue <= 155);
@@ -53,9 +54,12 @@ public class QLearning {
 			break;
 		case 2:
 			turnLeft(500);		//find appropriate angle to turn left.
+			stop();
 			break;
 		case 3:
 			backward(1300);		//figure out value to reverse 1 space.
+			stop();
+			break;		
 		default:
 			break;
 		}
