@@ -44,30 +44,18 @@ public class QLearning {
 		//function to move and turn...etc.
 		switch(action) {
 		case 0:
-			forward(1300); //figure out value to go forward 1 space
+			forward(1300); 		//figure out value to go forward 1 space.
+			stop();
 			break;
 		case 1:
+			turnRight(500);		//find appropriate angle to turn right.
+			stop();
 			break;
 		case 2:
-			//reverse, turn left/right, move to that space
-			backward(1300);
-			Motor.B.backward();	//whatever turn angle we decide
-			Motor.C.forward();
-			try {
-				Thread.sleep(600);
-				} catch(Exception e){};
-			forward(1300);
+			turnLeft(500);		//find appropriate angle to turn left.
 			break;
 		case 3:
-			//reverse, turn left/right, move to that space
-			backward(1300);
-			Motor.B.backward();	//whatever turn angle we decide
-			Motor.C.forward();
-			try {
-				Thread.sleep(600);
-				} catch(Exception e){};
-			forward(1300);
-			break;
+			backward(1300);		//figure out value to reverse 1 space.
 		default:
 			break;
 		}
@@ -109,7 +97,28 @@ public class QLearning {
 		try {
 			Thread.sleep(length);
 		} catch (Exception e) {};
-	}	
+	}
+	
+	public static void turnLeft(int length){
+		Motor.B.forward();
+		Motor.C.backward();
+		try {
+			Thread.sleep(length);
+		} catch (Exception e) {};
+	}
+	
+	public static void turnRight(int length){
+		Motor.B.backward();
+		Motor.C.forward();
+		try {
+			Thread.sleep(length);
+		} catch (Exception e) {};
+	}
+	
+	public static void stop(){   
+		Motor.B.stop();   
+		Motor.C.stop();  
+	}
 	
 	public static void main(String[] args) throws InterruptedException {
 		int state;
@@ -120,28 +129,40 @@ public class QLearning {
 		int max;
 		int c;
 		
-		//This will be adjusted as agent learns (more rows/cols)
-		int[][] QVALUES = {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}}; 
+		//This will be adjusted as agent learns. 
+		int[][] QVALUES = {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
+		//First value = states; Second value = actions.
+		//0,0	0,1	0,2	0,3
+		//1,0	1,1	1,2	1,3
+		//2,0	2,1	2,2	2,3
+		//3,0	3,1	3,2	3,3
 		
-		double alpha = 0.1;		//Learning rate
-		double discount = 0.5; //relative value of short term success versus long term success
-		int exploration = 2;	//rate at which robot will randomly move despite potentially better options
+		
+		
+		double alpha = 0.1;		//Learning rate.
+		double discount = 0.5; 		//relative value of short term success versus long term success.
+		int exploration = 2;		//rate at which robot will randomly move despite potentially better options.
 		
 		while (true) {
 			state = getState();
-			max = -30000;	//arbitrary value? not sure yet
-			action = 4;		//however many actions we choose to implement?
+			max = -30000;		//arbitrary value? not sure yet.
+			action = 4;		//default action.
+			
+			//Cycle through the array values for current state to find which action will give the highest utility.
 			for (c=0; c<4;c++) {
 				if (QVALUES[state][c] > max) {
 					max = QVALUES[state][c];
 					action = c;
 				}
 			}
-			randNum = (int) (Math.random()*9);
+			randNum = (int) (Math.random()*9);	//10% chance the robot will randomly explore.
 
+			//If no action has been found that is better than the others, or the random number is below exploration
+			//threshold, generate a random number between 0 and 3 to represent next action.
 			if(action == 4 || randNum + 1 <= exploration) {
 				action = (int) (Math.random()*3);
 			}
+			
 			execute(action, state);
 			Thread.sleep(450);
 			nextState = getState();
@@ -155,6 +176,8 @@ public class QLearning {
 				}
 			}
 			
+			//Update matrix value for initial state and action pair based on reward, previous value, and potential
+			//utility values for the current state.
 			QVALUES[state][action] = 
 					(int)((QVALUES[state][action]) + alpha * (r + (discount * max) - QVALUES[state][action]));
 			
