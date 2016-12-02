@@ -8,8 +8,7 @@
 *	Update Q(s,a) := Q(s,a) + alpha[r + gamma*max Q(s',a')-Q(s,a)]
 */
 import lejos.nxt.ColorSensor;
-import lejos.nxt.Motor;
-import lejos.nxt.SensorPort;
+import lejos.nxt.Motor;import lejos.nxt.SensorPort;
 
 public class QLearning {
 	static ColorSensor colorSensor = new ColorSensor(SensorPort.S1);
@@ -45,7 +44,7 @@ public class QLearning {
 		//function to move and turn...etc.
 		switch(action) {
 		case 0:
-			forward(1300); 		//figure out value to go forward 1 space.
+			forward(300); 		//figure out value to go forward 1 space.
 			stop();
 			break;
 		case 1:
@@ -57,7 +56,7 @@ public class QLearning {
 			stop();
 			break;
 		case 3:
-			backward(1300);		//figure out value to reverse 1 space.
+			backward(300);		//figure out value to reverse 1 space.
 			stop();
 			break;		
 		default:
@@ -81,7 +80,7 @@ public class QLearning {
 		case 3:
 			reward = -50; //static obstacle
 		default:
-			reward = 0;
+e			reward = 0;
 			break;
 		}
 		return reward;
@@ -91,7 +90,7 @@ public class QLearning {
 		Motor.B.forward();
 		Motor.C.forward();
 		try {
-			Thread.sleep(length);
+u			Thread.sleep(length);
 		} catch(Exception e){};
 	}
 	
@@ -120,7 +119,7 @@ public class QLearning {
 	}
 	
 	public static void stop(){   
-		Motor.B.stop();   
+		Motor.B.stop(true);   
 		Motor.C.stop();  
 	}
 	
