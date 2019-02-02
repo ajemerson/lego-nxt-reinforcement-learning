@@ -17,16 +17,16 @@ randomly within a set perimeter each test iteration. The course will be construc
 on a flat surface.
 
 The obstacles, walls, and goal of the rectangle will be defined by different color
-sticky-notes/tape (i.e. yellow = variable obstacles, red = static obstacles, green =
+sticky-notes/tape (i.e., yellow = variable obstacles, red = static obstacles, green =
 goal, black = walls). The robot will use visual sensors to determine the colors of
 the sticky-notes/tape.
 
 ## Functionality:
 A Lego Mindstorm robot that shows measurable improvement after successive
 obstacle course driving tests by utilizing reinforcement learning algorithms.
-○ A data analysis/visualization of the performance improvement and obstacle
+- A data analysis/visualization of the performance improvement and obstacle
 course environment information obtained after each test.
-○ An improvement rate comparison of each reinforcement algorithm tested. (ex.
+- An improvement rate comparison of each reinforcement algorithm tested. (e.g.,
 Temporal Difference Algorithm, Expectation Maximization Algorithm)
 
 ## Sources
