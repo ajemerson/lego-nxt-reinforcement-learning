@@ -8,7 +8,8 @@ Lego Mindstorm robots in attempt to simulate an autonomous vehicle on a small
 scale in an obstacle course
 
 ## Definitions:
-###Obstacle Course: The obstacle course is an 8x4ft (subject to change) rectangle
+### Obstacle Course: 
+The obstacle course is an 8x4ft (subject to change) rectangle
 with start and end points on opposite sides. The course will be surrounded by
 walls. The course will contain static and variable obstacles. Static obstacles will
 remain in the same position after each test. Variable obstacles will be placed
@@ -20,7 +21,7 @@ sticky-notes/tape (i.e. yellow = variable obstacles, red = static obstacles, gre
 goal, black = walls). The robot will use visual sensors to determine the colors of
 the sticky-notes/tape.
 
-##Functionality
+## Functionality:
 A Lego Mindstorm robot that shows measurable improvement after successive
 obstacle course driving tests by utilizing reinforcement learning algorithms.
 ○ A data analysis/visualization of the performance improvement and obstacle
@@ -28,8 +29,8 @@ course environment information obtained after each test.
 ○ An improvement rate comparison of each reinforcement algorithm tested. (ex.
 Temporal Difference Algorithm, Expectation Maximization Algorithm)
 
-##Sources
-[Machine Learning with a Lego Mindstorms Robot | Stanford](http://cs229.stanford.edu/proj2006/Townsend-MachineLearningWithALegoMind stormsRobot.pdf)
+## Sources
+[Machine Learning with a Lego Mindstorms Robot | Stanford](http://cs229.stanford.edu/proj2006/Townsend-MachineLearningWithALegoMindstormsRobot.pdf)
 
 [Reinforcement Learning on the Lego Mindstorms NXT Robot. Analysis and Implementation](http://s45d5ecd815a73d63.jimcontent.com/download/version/1442337988/module/5725975313/name/6.pdf)
 
